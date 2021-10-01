@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Prueba_9D_MVC.Models.producto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="center">
+    <h2>Inicio</h2>
+</div>
+<br />
+<div class="left-align">
+    @Html.ActionLink("Agregar articulo", "AgregarProducto", null, new { @class = "btn blue darken-2" })
+</div>
+<br /><br />
+      <div class="row">
+          <table class="table striped highlight centered responsive-table">
+              <thead>
+                  <tr>
+                      <th>
+                          Nombre
+                      </th>
+                      <th>
+                          Precio
+                      </th>
+                      <th>
+                          Descripcion
+                      </th>
+                      <th>
+                          Existencias
+                      </th>
+                      <th>
+                          Acciones
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  @foreach (var item in Model)
+                  {
+                  <tr>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.nombre)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.precio)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.descripcion)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.existencia)
+                      </td>
+                      <td>
+                          <a class="btn" href="@Url.Action("EditarProducto", new { id = item.id })"><i class='material-icons'>edit</i></a>
+                          <a class="btn blue darken-2" href="@Url.Action("DetallesProducto", new { id = item.id })"><i class='material-icons'>visibility</i></a>
+                          <a class="btn red darken-2" href="@Url.Action("EliminarProducto", new { id = item.id })"><i class='material-icons'>delete</i></a>
+                      </td>
+                  </tr>
+                  }
+              </tbody>
+          </table>
+      </div>
+      
